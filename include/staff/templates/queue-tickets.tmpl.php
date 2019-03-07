@@ -228,19 +228,35 @@ foreach ($columns as $C) {
   <tbody>
 <?php
 foreach ($tickets as $T) {
-    echo '<tr>';
+    switch ($T['cdata__priority']) {
+		case 1:
+			echo '<tr style="background-color:#DDFFDD">';
+			break;
+		case 2:
+			echo '<tr style="background-color:#FFFFF0">';
+			break;
+		case 3:
+			echo '<tr style="background-color:#FEE7E7">';
+			break;
+		case 4:
+			echo '<tr style="background-color:#FEE7E7">';
+			break;
+		case 5:
+			echo '<tr style="background-color:#AFCEFF">';
+			break;
+	}
     if ($canManageTickets) { ?>
-        <td><input type="checkbox" class="ckb" name="tids[]"
+        <td style="background-color:inherit"><input type="checkbox" class="ckb" name="tids[]"
             value="<?php echo $T['ticket_id']; ?>" /></td>
 <?php
     }
     foreach ($columns as $C) {
         list($contents, $styles) = $C->render($T);
-        if ($style = $styles ? 'style="'.$styles.'"' : '') {
+        if ($style = $styles ? 'style="'.$styles.';background-color:inherit"' : '') {
             echo "<td $style><div $style>$contents</div></td>";
         }
         else {
-            echo "<td>$contents</td>";
+            echo "<td style='background-color:inherit'>$contents</td>";
         }
     }
     echo '</tr>';
