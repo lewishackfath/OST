@@ -172,6 +172,7 @@ extends VerySimpleModel {
         return (!$this->disableAlerts());
     }
 
+
     function getRules() {
         $rules = [];
         foreach ($this->rules as $r)
@@ -903,6 +904,7 @@ class FilterDataChanged extends Exception {
          parent::__construct('Ticket filter data changed');
          $this->data = $data;
     }
+
 
     function getData() {
         return $this->data;
